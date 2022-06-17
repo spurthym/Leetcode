@@ -3,9 +3,9 @@ class Solution:
         lookup={}
         
         for i in range(len(nums)):
-            if nums[i] in lookup:
-                return(lookup[nums[i]],i)
+            curr_val=nums[i]
+            if curr_val in lookup:
+                return [i,lookup[curr_val]]
+                
             else:
-                lookup[target-nums[i]]=i
-        return none
-    
+                lookup[target-curr_val]=i
