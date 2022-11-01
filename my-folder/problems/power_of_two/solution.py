@@ -3,5 +3,5 @@ class Solution:
                 if n<=0:
                     return False
                 if n%2==0:
-                    return self.isPowerOfTwo(n/2)
+                    return self.isPowerOfTwo(n//2)
                 return n==1
