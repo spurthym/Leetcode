@@ -1,21 +1,19 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        l=[]
-        bmap={
+        d={
             ")":"(",
             "]":"[",
             "}":"{"
         }
-        
-        
-        for each in s:
-            if each in bmap:
-                if l and l[-1]==bmap[each]:
-                    l.pop()
+        stk=[]
+        for i in range(len(s)):
+            if stk and s[i] in d:
+                if stk[-1]==d[s[i]]:
+                    stk.pop()
+                    continue
                 else:
                     return False
-            else:
-                l.append(each)
-        return True if not l else False
-    
-        
+            
+            
+            stk.append(s[i])
+        return True if not stk else False
