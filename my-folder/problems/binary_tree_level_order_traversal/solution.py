@@ -11,9 +11,9 @@ class Solution:
         res=[]
         
         while q:
+            length=len(q)
             level=[]
-            qlen=len(q)
-            for i in range(qlen):
+            for i in range(length):
                 node=q.popleft()
                 if node:
                     q.append(node.left)
@@ -22,5 +22,5 @@ class Solution:
             if level:
                 res.append(level)
         return res
-
+    
                 
