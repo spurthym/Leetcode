@@ -4,10 +4,11 @@ class Solution:
         d={}
         
         for i in nums:
-            if i not in d:
-                d[i]=1
+            if i in d:
+                return True
+            d[i]=1
             
-            if len(nums)==len(d):
-                return False
-        return True
+            
+                
+        return False
         
