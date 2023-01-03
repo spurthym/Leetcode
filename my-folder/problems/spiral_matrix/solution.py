@@ -11,11 +11,9 @@ class Solution:
             for i in range(left,right):
                 res.append(mat[top][i])
             top+=1
-            print(res)
             for i in range(top,bottom):
                 res.append(mat[i][right-1])
             right-=1
-            print(res)
 
             if not (top<bottom and left<right):
                 break
@@ -24,7 +22,6 @@ class Solution:
             for i in range(right-1,left-1,-1):
                 res.append(mat[bottom-1][i])
             bottom-=1
-            print(res)
 
             for i in range(bottom-1,top-1,-1):
                 res.append(mat[i][left])
