@@ -1,14 +1,10 @@
-
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
         d={}
-        
-        for i in nums:
-            if i in d:
+        for each in nums:
+
+            if each in d:
                 return True
-            d[i]=1
-            
-            
-                
+            d[each]=1
         return False
         
