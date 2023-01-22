@@ -4,7 +4,7 @@ class Solution:
         r=len(nums)-1
         while l<=r:
             mid=(l+r)//2
-            if nums[mid]==target :
+            if nums[mid]==target:
                 return mid
             if nums[l]<=nums[mid]:
                 if target>nums[mid] or target<nums[l]:
@@ -14,8 +14,7 @@ class Solution:
             else:
                 if target<nums[mid] or target>nums[r]:
                     r=mid-1
-                else: 
+                else:
                     l=mid+1
-
         return -1
-    
+                    
