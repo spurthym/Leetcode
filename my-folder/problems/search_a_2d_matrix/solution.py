@@ -1,31 +1,16 @@
 class Solution:
-    def searchMatrix(self, mat: List[List[int]], target: int) -> bool:
-        left=0
-        right=len(mat[0])-1
-        top=0
-        bottom=len(mat)-1
-
-        while top<=bottom:
-            midrow=(top+bottom)//2
-            if target>mat[midrow][-1]:
-                top=midrow+1
-            elif target<mat[midrow][0]:
-                bottom=midrow-1
-            else:
-                break
-        if not(top<=bottom):
-            return False
-        
-        while left<=right:
-            midcol=(left+right)//2
-            
-            if target>mat[midrow][midcol]:
-                left=midcol+1
-                
-            elif target<mat[midrow][midcol]:
-                right=midcol-1
-            else:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        r=0
+        c=len(matrix[0])-1
+        print(r,c)
+        print(len(matrix))
+        while(r<=len(matrix)-1 and c>=0):
+            if matrix[r][c]==target:
                 return True
+            if(matrix[r][c]<target):
+                r+=1
+            else:
+                c-=1
         return False
 
 
