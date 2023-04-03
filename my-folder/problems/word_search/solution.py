@@ -1,23 +1,32 @@
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
+
         rows=len(board)
         cols=len(board[0])
-        visit=set()
-        def search(i,j,p):
-            if len(word)==p:
+        visit=set()        
+
+
+        def backtrack(i,j,k):
+            if k==len(word):
                 return True
-            if min(i,j)<0 or i>=rows or j>= cols or word[p]!=board[i][j] or (i,j) in visit :
+            
+            if i<0 or j<0 or i>=rows or j>=cols or board[i][j]!=word[k] or (i,j) in visit :
                 return False
+            
             visit.add((i,j))
-            res=(search(i+1,j,p+1) or search(i-1,j,p+1) or search(i,j+1,p+1) or search(i,j-1,p+1))
+            res=(
+            backtrack(i+1,j,k+1) or
+            backtrack(i-1,j,k+1) or
+            backtrack(i,j+1,k+1) or 
+            backtrack(i,j-1,k+1))
+
             visit.remove((i,j))
             return res
-        count = defaultdict(int, sum(map(Counter, board), Counter()))
-        if count[word[0]] > count[word[-1]]:
-            word = word[::-1]
+        
+
         for i in range(rows):
             for j in range(cols):
-                if search(i,j,0):
-                    return True
-        return False
+                if board[i][j]==word[0]:
+                    if backtrack(i,j,0): return True
         
+        return False
