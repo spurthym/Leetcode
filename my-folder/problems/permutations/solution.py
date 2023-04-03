@@ -1,12 +1,10 @@
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
-
-        res=[]
+        
         current_state=[]
-        v=[False]*len(nums)
-
+        v=[0 for x in range(len(nums))]
+        res=[]
         def backtrack():
-
             if len(current_state)==len(nums):
                 res.append(current_state.copy())
                 return
@@ -18,6 +16,6 @@ class Solution:
                     backtrack()
                     current_state.pop()
                     v[i]=False
+            
         backtrack()
         return res
-
