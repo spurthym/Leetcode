@@ -1,23 +1,27 @@
 class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
-
+        used=[False for x in range(len(nums))]
+        current_permutation=[]
         res=[]
-        current_state=[]
-        v=[False]*len(nums)
+        
 
-        def backtrack(current_state):
-            if len(current_state)==len(nums):
-                res.append(current_state.copy())
+        def backtrack():
+            if len(current_permutation)==len(nums):
+                res.append(current_permutation.copy())
                 return
-            s=[]
+            used_elements=[]
             for i in range(len(nums)):
-                if nums[i] not in s and v[i]==False:
-                    current_state.append(nums[i])
-                    v[i]=True
-                    backtrack(current_state)
-                    current_state.pop()
-                    s.append(nums[i])
-                    v[i]=False
-        backtrack(current_state)
+                if  not used[i] and nums[i] not in used_elements:
+                    used[i]=True
+                    current_permutation.append(nums[i])
+                    backtrack()
+                    current_permutation.pop()
+                    used[i]=False
+                    used_elements.append(nums[i])
+        backtrack()
         return res
+                    
 
+
+
+        
