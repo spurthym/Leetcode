@@ -3,19 +3,17 @@ class Solution:
         rows=len(mat)
         cols=len(mat[0])
      
-        if rows*cols!=r*c:
+        if rows *cols!=r*c:
             return mat
-        newmat= [ [0 for _ in range(c)] for _ in range(r)]
-
-        l=[]
-        k=0   
-        for i in range(rows):
-            for j in range(cols):
-                l.append(mat[i][j])
-
-        for i in range(r):
-            for j in range(c):
-                newmat[i][j]=l[k]
-                k+=1
         
-        return newmat
+        newmat=[[0 for j in range(c)] for x in range(r)]
+        k=0
+        for x in range(rows):
+            for y in range(cols):
+                newmat[k//c][k%c]=mat[x][y]
+                k+=1
+
+
+
+
+        return (newmat)
