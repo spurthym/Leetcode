@@ -1,17 +1,20 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 class Solution:
     def sumRootToLeaf(self, root: Optional[TreeNode]) -> int:
-        def sumRootToLeaf(root, res): # here; "res" is "sum"
-            if root == None: 
-                return 0
-            res = (2 * res) + root.val
-            if root.left == None and root.right == None: 
-                return res
-            return sumRootToLeaf(root.left, res) + sumRootToLeaf(root.right, res)
-        
-        return sumRootToLeaf(root, 0)
+        res = 0
+
+        def sumroot(root, val):
+            nonlocal res
+            if not root:
+                return
+            if root.left==None  and root.right==None:
+                
+                val = val * 2 + root.val
+                
+                res += val
+                return
+            val = val * 2 + root.val
+            sumroot(root.left, val)
+            sumroot(root.right, val)
+
+        sumroot(root, 0)
+        return res
