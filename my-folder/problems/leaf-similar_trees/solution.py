@@ -14,6 +14,7 @@ class Solution:
                 return
             if root.left==None and root.right==None:
                 l.append(root.val)
+                return
             dfs(root.left,l)
             dfs(root.right,l)
         
