@@ -1,19 +1,25 @@
+from typing import List
+
 class Solution:
     def threeSum(self, arr: List[int]) -> List[List[int]]:
         arr.sort()
-        res=[]
+        res = []
+        
+
         for i,a in enumerate(arr):
             if i>0 and a==arr[i-1]:
                 continue
+            
             left=i+1
             right=len(arr)-1
+
             while left<right:
-                
-                threesum=a+arr[left]+arr[right]
-                if threesum<0:
-                    left+=1
-                elif threesum>0:
+
+                threes=a+arr[left]+arr[right]
+                if threes>0:
                     right-=1
+                elif threes<0:
+                    left+=1
                 else:
                     res.append([a,arr[left],arr[right]])
                     left+=1
@@ -23,5 +29,3 @@ class Solution:
                     while left<right and arr[right]==arr[right+1]:
                         right-=1
         return res
-                    
-               
