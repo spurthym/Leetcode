@@ -1,18 +1,25 @@
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
-        m_r_l_c=0
-        freq={}
+
+        d={}
+        max_len=0
         start=0
-        max_length=0
+        max_repeat_letter_count=0
         for end in range(len(s)):
             rc=s[end]
-            if rc not in freq:
-                freq[rc]=0
-            freq[rc]+=1
-            m_r_l_c=max(m_r_l_c,freq[rc])
-            if end-start+1-m_r_l_c>k:
-                lc=s[start]
-                freq[lc]-=1
-                start=start+1
-            max_length=max(max_length, end-start+1)
-        return max_length
+
+            if rc not in d:
+                d[rc]=0
+            d[rc]+=1
+            if d[rc]>max_repeat_letter_count:
+                max_repeat_letter_count=d[rc]
+            if end-start+1-max_repeat_letter_count > k :
+                d[s[start]]-=1
+                start+=1
+            if end-start+1>max_len:
+                max_len=end-start+1
+        return max_len
+            
+
+
+        
