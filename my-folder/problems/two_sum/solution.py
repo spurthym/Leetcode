@@ -1,11 +1,26 @@
-class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-        
-        idx={}
+class Solution(object):
+    def twoSum(self, num, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
 
-        for i in range(len(nums)):
-            if nums[i] in idx:
-                return [i,idx[nums[i]]]
+        nums=[]
+        for i,v in enumerate(num):
+            nums.append([v,i])
+
+        nums=sorted(nums, key=lambda x: x[0])
+        print(nums)
+
+        ptr1=0
+        ptr2=len(nums)-1
+
+        while ptr1<ptr2:
+
+            if nums[ptr1][0]+nums[ptr2][0]>target:
+                ptr2-=1
+            elif nums[ptr1][0]+nums[ptr2][0]<target:
+                ptr1+=1
             else:
-                idx[target-nums[i]]=i
-            
+                return [nums[ptr1][1],nums[ptr2][1]]
