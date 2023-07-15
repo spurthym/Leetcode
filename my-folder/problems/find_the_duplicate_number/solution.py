@@ -1,23 +1,21 @@
-class Solution:
-    def findDuplicate(self, nums: List[int]) -> int:
-        ptr2=0
-        ptr1=0
-        while True:
-            ptr1=nums[ptr1]
-            ptr2=nums[nums[ptr2]]
-            if ptr1==ptr2:
-                break
-        ptr3=0
-        while True:
-            ptr3=nums[ptr3]
-            ptr1=nums[ptr1]
+class Solution(object):
+    def findDuplicate(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        i=0
+
+
+        while i<len(nums):
+            if nums[i]<i :
+                return nums[i]
+            while nums[i]!=i+1:
+                if nums[i]==nums[nums[i]-1]:
+                    return nums[i]
+                temp=nums[nums[i]-1]
+                nums[nums[i]-1]=nums[i]
+                nums[i]=temp
             
-            if ptr1==ptr3:
-                break
-            
-            
-        return ptr1
-                
-                
-            
+            i+=1
         
