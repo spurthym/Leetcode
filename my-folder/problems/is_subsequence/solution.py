@@ -1,18 +1,21 @@
-class Solution:
-    def isSubsequence(self, s: str, t: str) -> bool:
-        pointer_s=0
-        pointer_t=0
+class Solution(object):
+    def isSubsequence(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        
+        ptr1=0
+        ptr2=0
 
-       
 
-        while pointer_s <len(s) and pointer_t<len(t):
-            if s[pointer_s]==t[pointer_t]:
-                pointer_s+=1
-                
-            pointer_t+=1
-        if pointer_s==len(s):
+        while ptr2<len(t) and (ptr1)<len(s):
+            if s[ptr1]==t[ptr2]:
+                ptr1+=1
+            ptr2+=1
+        if ptr1==len(s):
             return True
         return False
-            
-
-        
+                
+                
