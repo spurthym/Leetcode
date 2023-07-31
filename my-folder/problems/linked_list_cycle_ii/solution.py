@@ -1,20 +1,22 @@
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
-
 class Solution:
     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        ptr1=head
-        d={}
+        fast = head
+        slow = head
 
-        while ptr1:
-            if ptr1 in d:
-                return ptr1
-            
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if fast == slow:
+                break
 
-            d[ptr1]=0
-            ptr1=ptr1.next
-        return None
-        
+        if not fast or not fast.next:
+            return None
+
+        # Reset one pointer to the head and move both pointers at the same speed
+        # until they meet at the cycle's starting point (entry node).
+        slow = head
+        while slow != fast:
+            slow = slow.next
+            fast = fast.next
+
+        return fast
