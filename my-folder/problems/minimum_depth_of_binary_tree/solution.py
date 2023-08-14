@@ -8,18 +8,21 @@ class Solution:
     def minDepth(self, root: Optional[TreeNode]) -> int:
         if root==None:
             return 0
-        min_nodes=math.inf
-        
-        def depth(root,n):
-            nonlocal min_nodes
-            if root==None:
-                return
-            if root.left==None and root.right==None:
-                if n<min_nodes:
-                    min_nodes=n
-                return
-            depth(root.left,n+1)
-            depth(root.right,n+1)
-        depth(root,1)
-        return min_nodes
+        min_depth=math.inf
 
+        q=deque()
+        q.append(root)
+        nodes=1
+        while q:
+            for i in range(len(q)):
+                curr=q.popleft()
+                if curr.left==None and curr.right==None:
+                    return nodes
+                if curr.left:
+                    q.append(curr.left)
+                if curr.right:
+                    q.append(curr.right)
+            nodes+=1
+        
+
+        
