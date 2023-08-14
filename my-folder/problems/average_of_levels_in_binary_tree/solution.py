@@ -6,37 +6,25 @@
 #         self.right = right
 class Solution:
     def averageOfLevels(self, root: Optional[TreeNode]) -> List[float]:
-        d=defaultdict(list)
-        curr=root
-        maxl=0
- 
 
+        level=1
+        q=deque()
+        res=[]
+        q.append(root)
 
-        def avg(curr,level):
-            if curr==None:
-                return 0
-            if level not in d:
-                d[level].append(0)
-                d[level].append(0)
-            d[level][0]=d[level][0]+curr.val
-            d[level][1]=d[level][1]+1
-
-
-
-            avg(curr.left,level+1)
-            avg(curr.right,level+1)
-        
-        avg(curr,0)
-
-        
-
-
-        print(d)
-        res=[d[0][0]]
-        for i in range(1,len(d)):
-            res.append(d[i][0]/d[i][1])
+        while q:
+            s=0
+            div=len(q)
+            for i in range(len(q)):
+                curr=q.popleft()
+                s+=curr.val
+                if curr.left:
+                    q.append(curr.left)
+                if curr.right:
+                    q.append(curr.right)
+            
+            res.append(s/div)
+           
         return res
-
-
-            
-            
+        
+        
